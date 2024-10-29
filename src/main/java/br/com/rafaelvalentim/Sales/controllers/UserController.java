@@ -3,6 +3,7 @@ package br.com.rafaelvalentim.Sales.controllers;
 import br.com.rafaelvalentim.Sales.entities.User;
 import br.com.rafaelvalentim.Sales.services.UserService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,12 +23,14 @@ public class UserController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<List<User>> allUsers() {
         List<User> users = userService.allUsers();
         return ResponseEntity.ok(users);
     }
 
     @GetMapping("/me")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<User> authenticatesUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = (User) authentication.getPrincipal();
