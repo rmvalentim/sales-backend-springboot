@@ -1,5 +1,6 @@
 package br.com.rafaelvalentim.Sales.services;
 
+import br.com.rafaelvalentim.Sales.dtos.ItemGroupCreateDto;
 import br.com.rafaelvalentim.Sales.entities.ItemGroup;
 import br.com.rafaelvalentim.Sales.repositories.ItemGroupRepository;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,9 @@ public class ItemGroupService {
         this.itemGroupRepository = itemGroupRepository;
     }
 
-    public ItemGroup createItemGroup(ItemGroup itemGroup) {
+    public ItemGroup createItemGroup(ItemGroupCreateDto itemGroupDto) {
+        ItemGroup itemGroup = new ItemGroup()
+                .setDescription(itemGroupDto.getDescription());
         return itemGroupRepository.save(itemGroup);
     }
 

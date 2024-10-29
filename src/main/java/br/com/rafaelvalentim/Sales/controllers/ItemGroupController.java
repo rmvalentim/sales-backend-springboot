@@ -1,5 +1,6 @@
 package br.com.rafaelvalentim.Sales.controllers;
 
+import br.com.rafaelvalentim.Sales.dtos.ItemGroupCreateDto;
 import br.com.rafaelvalentim.Sales.entities.ItemGroup;
 import br.com.rafaelvalentim.Sales.services.ItemGroupService;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class ItemGroupController {
 
     @PostMapping
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<ItemGroup> createItemGroup(@RequestBody ItemGroup itemGroup) {
-        return ResponseEntity.ok(itemGroupService.createItemGroup(itemGroup));
+    public ResponseEntity<ItemGroup> createItemGroup(@RequestBody ItemGroupCreateDto itemGroupCreateDto) {
+        return ResponseEntity.ok(itemGroupService.createItemGroup(itemGroupCreateDto));
     }
 }
