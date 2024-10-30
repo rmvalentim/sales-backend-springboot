@@ -1,7 +1,5 @@
 package br.com.rafaelvalentim.Sales.dtos;
 
-import br.com.rafaelvalentim.Sales.entities.ItemGroup;
-
 import java.math.BigDecimal;
 
 public class ItemCreateDto {
