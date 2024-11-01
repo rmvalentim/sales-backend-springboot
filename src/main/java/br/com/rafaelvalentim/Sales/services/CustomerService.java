@@ -5,6 +5,9 @@ import br.com.rafaelvalentim.Sales.entities.Customer;
 import br.com.rafaelvalentim.Sales.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class CustomerService {
     private final CustomerRepository customerRepository;
@@ -18,5 +21,11 @@ public class CustomerService {
                 .setName(customerCreateDto.getName())
                 .setDocument(customerCreateDto.getDocument());
         return customerRepository.save(customer);
+    }
+
+    public List<Customer> getAllCustomers() {
+        List<Customer> customers = new ArrayList<>();
+        customerRepository.findAll().forEach(customers::add);
+        return customers;
     }
 }
