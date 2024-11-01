@@ -8,6 +8,9 @@ import br.com.rafaelvalentim.Sales.repositories.ItemRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ItemService {
     private final ItemRepository itemRepository;
@@ -29,5 +32,11 @@ public class ItemService {
                 .setItemGroup(itemGroup);
 
         return itemRepository.save(item);
+    }
+
+    public List<Item> getAllItems() {
+        List<Item> items = new ArrayList<>();
+        itemRepository.findAll().forEach(items::add);
+        return items;
     }
 }
