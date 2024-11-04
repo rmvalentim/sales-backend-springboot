@@ -39,4 +39,9 @@ public class ItemService {
         itemRepository.findAll().forEach(items::add);
         return items;
     }
+
+    public Item getItemById(Integer id) {
+        return itemRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Customer not found with id: " + id));
+    }
 }

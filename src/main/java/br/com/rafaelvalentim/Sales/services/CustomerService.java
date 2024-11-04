@@ -3,6 +3,7 @@ package br.com.rafaelvalentim.Sales.services;
 import br.com.rafaelvalentim.Sales.dtos.CustomerCreateDto;
 import br.com.rafaelvalentim.Sales.entities.Customer;
 import br.com.rafaelvalentim.Sales.repositories.CustomerRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,5 +28,10 @@ public class CustomerService {
         List<Customer> customers = new ArrayList<>();
         customerRepository.findAll().forEach(customers::add);
         return customers;
+    }
+
+    public Customer getCustomerById(Integer id) {
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Customer not found with id: " + id));
     }
 }
